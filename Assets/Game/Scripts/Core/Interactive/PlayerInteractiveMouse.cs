@@ -11,6 +11,8 @@ namespace Game.Scripts.Core.Interactive
         private GameObject _target;
         private Animator _anim;
         [SerializeField] private float _cuttingRange = 1.5f;
+        private float _lastTimeCut;
+        [SerializeField] private float _cooldownCutting = 0.2f;
 
         private void Start()
         {
@@ -20,7 +22,7 @@ namespace Game.Scripts.Core.Interactive
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && Time.time > _lastTimeCut + _cooldownCutting)
             {
                 _mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
                 HandleMouseClick();
@@ -37,12 +39,19 @@ namespace Game.Scripts.Core.Interactive
                 var isTreeRange = Vector2.Distance(
                     _target.transform.position, 
                     transform.position) < _cuttingRange;
+
+
+                if (!_target.TryGetComponent<TreeComponent>(out var treeComp)) 
+                    return;
                 
-                var canCut = isTree && isTreeRange;
+                var isCuttable = treeComp.Hp > 0;
+                var isReady = Time.time > _lastTimeCut + _cooldownCutting;
+                var canCut = isTree && isTreeRange && isCuttable && isReady;
 
                 if (canCut)
                 {
-                    _anim.SetBool("IsCutting", true);
+                    _lastTimeCut = Time.time;
+                    _anim.SetTrigger("CutTrigger");
                 }
             }
         }
@@ -54,7 +63,6 @@ namespace Game.Scripts.Core.Interactive
             {
                 treeComp.Cut();
             }
-            
             _anim.SetBool("IsCutting", false);
         }
     }

@@ -107,10 +107,7 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsCutting
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 980257917961459734}
   m_Solo: 0
@@ -235,10 +232,7 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsCutting
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 980257917961459734}
   m_Solo: 0
@@ -262,7 +256,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsCutting
+    m_ConditionEvent: CutTrigger
     m_EventTreshold: 0
   - m_ConditionMode: 4
     m_ConditionEvent: DirectionX
@@ -276,7 +270,7 @@ AnimatorStateTransition:
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.75
-  m_HasExitTime: 0
+  m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -317,7 +311,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsCutting
+    m_ConditionEvent: CutTrigger
     m_EventTreshold: 0
   - m_ConditionMode: 3
     m_ConditionEvent: DirectionX
@@ -331,7 +325,7 @@ AnimatorStateTransition:
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.75
-  m_HasExitTime: 0
+  m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -371,6 +365,12 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: IsCutting
     m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: CutTrigger
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -579,7 +579,7 @@ AnimatorStateMachine:
     m_Position: {x: 30, y: 600, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1155582469817800005}
-    m_Position: {x: 300, y: -190, z: 0}
+    m_Position: {x: 290, y: -190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2625105389479854599}
     m_Position: {x: 300, y: -140, z: 0}

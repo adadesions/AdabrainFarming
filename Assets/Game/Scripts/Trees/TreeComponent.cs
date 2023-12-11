@@ -1,8 +1,8 @@
-using System;
 using System.Collections;
 using Game.Scripts.Items;
 using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Game.Scripts.Trees
 {
@@ -15,6 +15,8 @@ namespace Game.Scripts.Trees
         private GameObject _treeSprite;
         private GameObject _logSprite;
         private ProductItem _productItem;
+        private Transform _logsPool;
+        [SerializeField] private float _itemDropRate = 0.5f;
 
         public int Hp
         {
@@ -28,6 +30,7 @@ namespace Game.Scripts.Trees
             _treeSprite = transform.Find("TreeSprite").gameObject;
             _logSprite = transform.Find("LogSprite").gameObject;
             _productItem = GetComponent<ProductItem>();
+            _logsPool = GameObject.Find("LogsPool").transform;
         }
 
         public void Cut()
@@ -59,11 +62,17 @@ namespace Game.Scripts.Trees
             _anim.SetTrigger("NextState");
             transform.rotation = Quaternion.Euler(Vector3.zero);
             
-            // TODO: Drop Item
+            // Drop Item
+            // TODO: Drop item rate
+            // if (Random.value < _itemDropRate)
+            // {
+            //     _productItem.DropItem();    
+            // }
             _productItem.DropItem();
-            
-            yield return new WaitForSeconds(0.7f);
-            _logSprite.SetActive(true);
+
+            // Instantiate new log sprite instead of setActive it
+            var logClone = Instantiate(_logPrefab, transform.position, quaternion.identity);
+            logClone.transform.SetParent(_logsPool);
         }
     }
 }

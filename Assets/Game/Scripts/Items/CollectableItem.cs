@@ -9,6 +9,13 @@ namespace Game.Scripts.Items
     {
         private Rigidbody2D _rb2d;
         private Collider2D _collider2D;
+        [SerializeField] private ItemDescription _itemDescription;
+
+        public ItemDescription Description
+        {
+            get => _itemDescription;
+            set => _itemDescription = value;
+        }
 
         private void Start()
         {

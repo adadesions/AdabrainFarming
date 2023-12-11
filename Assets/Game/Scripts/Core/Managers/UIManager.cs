@@ -15,7 +15,7 @@ namespace Game.Scripts.Core.Managers
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 _inventoryPanel.SetActive(!_inventoryPanel.activeSelf);
                 Time.timeScale = _inventoryPanel.activeSelf ? 0 : 1;

@@ -238,7 +238,6 @@ MonoBehaviour:
   _itemPrefabs:
   - {fileID: 4048920039369046450, guid: a56801ef2b21b4f739db9af59b73fb56, type: 3}
   - {fileID: 6896522442251667336, guid: 00e2571f28b9b4ca5aa0a07ca0d0e891, type: 3}
-  - {fileID: 4178840765765339874, guid: 0b51ab0f34a25438a94b9e7d97bfcb2d, type: 3}
   _numDropItems: 2
 --- !u!1 &8489537757742629920
 GameObject:

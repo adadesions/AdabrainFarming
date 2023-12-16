@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Game.Scripts.InventorySystem;
 using Game.Scripts.Items;
 using UnityEngine;
 
@@ -25,11 +26,11 @@ namespace Game.Scripts.Core.Managers
         {
             _player = GameObject.FindWithTag("Player");
             _playerData = new PlayerDataJson();
-            _inventory = _player.GetComponent<Inventory>();
+            _inventory = InventoryManager.Instance.InventoryStore;
             
             // Load Data from file
             _player.transform.position = LoadPlayerPosition();
-            _inventory.ItemList = LoadInventoryItemList();
+            // _inventory.ItemList = LoadInventoryItemList();
 
         }
 
@@ -80,6 +81,8 @@ namespace Game.Scripts.Core.Managers
         public void Save()
         {
             SavePlayerPosition(_player.transform.position);
+            
+            // TODO: Need to fix
             SaveItemInInventory(_player.GetComponent<Inventory>().ItemList);
             
             var json = JsonUtility.ToJson(_playerData);

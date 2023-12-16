@@ -7,5 +7,6 @@ namespace Game.Scripts.Items
     {
         public string itemName = "Item Name";
         public float dropRate = 0.3f;
+        public Sprite sprite;
     }
 }

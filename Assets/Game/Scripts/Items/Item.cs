@@ -1,14 +1,16 @@
+using System;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
 namespace Game.Scripts.Items
 {
     // Abstract Class
+    [Serializable]
     public abstract class Item : MonoBehaviour
     {
-        protected string _name;
+        public string _name;
         
-        [SerializeField] protected ItemDescription _itemDescription;
+        [SerializeField] public ItemDescription _itemDescription;
 
         // Virtual Method
         public virtual void Initialization(Sprite sprite)

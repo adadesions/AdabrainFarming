@@ -1,0 +1,5 @@
+{"players":[
+  {"position":{"x":1.0,"y":1.0,"z":1.0},"historicalData":[1,2,3]},
+  {"position":{"x":2.0,"y":2.0,"z":2.0},"historicalData":[1,2,3]}
+]
+}

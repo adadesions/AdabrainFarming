@@ -1,12 +1,14 @@
+using System;
 using Game.Scripts.Items;
 using UnityEngine;
 
 namespace Game.Scripts.InventorySystem
 {
+    [Serializable]
     public class InventoryItem
     {
-        private CollectableItem _item;
-        private int _quantity;
+        public CollectableItem _item;
+        public int _quantity;
         
         // Constructors
         public InventoryItem(CollectableItem item, int quantity)

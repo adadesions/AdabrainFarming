@@ -6,13 +6,14 @@ namespace Game.Scripts.Items
 {
     [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(Rigidbody2D))]
+    [Serializable]
     public class CollectableItem : Item
     {
         private Rigidbody2D _rb2d;
         private Collider2D _collider2D;
         private Sprite _sprite;
-
-
+        public string name;
+        
         public ItemDescription Description
         {
             get => _itemDescription;
@@ -21,6 +22,7 @@ namespace Game.Scripts.Items
 
         private void Start()
         {
+            name = _itemDescription.name;
             _rb2d = GetComponent<Rigidbody2D>();
             _rb2d.gravityScale = 0;
             _rb2d.freezeRotation = true;

@@ -57,14 +57,13 @@ namespace Game.Scripts.InventorySystem
                 var itemDescription = kvp.Value.ItemObject.Description;
                 var quantity = kvp.Value.Quantity.ToString();
                 var invGUI = _inventoryItemUis[count];
-              
-                // TODO: Just Add this line
+                
                 invGUI.SetActive(true);
                 var textGUI = invGUI.transform.Find("Text").Find("Text (TMP)");
                 textGUI.GetComponent<TextMeshProUGUI>().text = $"x{quantity}";
 
-                var image = invGUI.GetComponent<Image>();
-                image.sprite = itemDescription.sprite;
+                var imageObj = invGUI.transform.Find("Image");
+                imageObj.GetComponent<Image>().sprite = itemDescription.sprite;
                 count++;
             }
         }

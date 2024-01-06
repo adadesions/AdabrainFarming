@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml;
+using Game.Scripts.Core.DataStructures;
 using Game.Scripts.InventorySystem;
 using Game.Scripts.Items;
 using UnityEngine;
@@ -11,7 +13,8 @@ namespace Game.Scripts.Core.Managers
     public class PlayerDataJson
     {
         public Vector3 lastPosition;
-        public List<string> itemInventory = new();
+        public SerializableDictionary<string, InventoryItem> itemInventory;
+        public List<CollectableItem> tempItemList;
     }
     
     public class PlayerSaveManager : MonoBehaviour
@@ -30,20 +33,20 @@ namespace Game.Scripts.Core.Managers
             
             // Load Data from file
             _player.transform.position = LoadPlayerPosition();
-            // _inventory.ItemList = LoadInventoryItemList();
+            _inventory.InventoryItems = LoadInventoryItemList();
 
         }
 
-        private List<string> LoadInventoryItemList()
+        private Dictionary<string, InventoryItem>  LoadInventoryItemList()
         {
             if (File.Exists(_filePath))
             {
                 var json = File.ReadAllText(_filePath);
                 var data = JsonUtility.FromJson<PlayerDataJson>(json);
-                return data.itemInventory;
+                return data.itemInventory.ToDictionary();
             }
 
-            return new List<string>();
+            return new Dictionary<string, InventoryItem>();
         }
 
         public void SavePlayerPosition(Vector3 playerPosition)
@@ -70,20 +73,26 @@ namespace Game.Scripts.Core.Managers
             return Vector3.zero;
         }
 
-        public void SaveItemInInventory(List<string> itemList)
+        private void SaveItemInInventory(Dictionary<string, InventoryItem> inventoryItems)
         {
-            foreach (var itemId in itemList)
-            { 
-                _playerData.itemInventory.Add(itemId);
-            }
+            var serializableDict = new SerializableDictionary<string, InventoryItem>(inventoryItems);
+            _playerData.itemInventory = serializableDict;
+        }
+        
+        private void SaveItemInInventory(Inventory inventory)
+        {
+            _playerData.tempItemList = inventory.TempItemList;
         }
 
         public void Save()
         {
             SavePlayerPosition(_player.transform.position);
             
-            // TODO: Need to fix
-            SaveItemInInventory(_player.GetComponent<Inventory>().ItemList);
+            // Real Usage
+            SaveItemInInventory(_inventory.InventoryItems);
+            
+            // For learning Only
+            SaveItemInInventory(_inventory);
             
             var json = JsonUtility.ToJson(_playerData);
             File.WriteAllText(_filePath, json);

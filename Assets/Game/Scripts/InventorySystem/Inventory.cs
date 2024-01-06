@@ -10,6 +10,7 @@ namespace Game.Scripts.InventorySystem
         private List<string> _itemList = new();
         private Dictionary<string, InventoryItem> _inventoryItems = new();
         private InventoryManager _inventoryManager;
+        private List<CollectableItem> _tempItemList = new();
 
         public List<string> ItemList
         {
@@ -21,6 +22,12 @@ namespace Game.Scripts.InventorySystem
         {
             get => _inventoryItems;
             set => _inventoryItems = value;
+        }
+
+        public List<CollectableItem> TempItemList
+        {
+            get => _tempItemList;
+            set => _tempItemList = value;
         }
 
         private void Start()
@@ -41,6 +48,9 @@ namespace Game.Scripts.InventorySystem
                 var invItem = new InventoryItem(collectableItem, 1);   
                 InventoryItems.Add(itemName, invItem);
             }
+            
+            // Debug: for save an instant variable
+            _tempItemList.Add(collectableItem);
 
             _inventoryManager.UpdateInventoryGUI();
             PrintInventory();

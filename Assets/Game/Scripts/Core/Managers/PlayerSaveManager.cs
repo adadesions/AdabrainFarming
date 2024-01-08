@@ -14,7 +14,6 @@ namespace Game.Scripts.Core.Managers
     {
         public Vector3 lastPosition;
         public SerializableDictionary<string, InventoryItem> itemInventory;
-        public List<CollectableItem> tempItemList;
     }
     
     public class PlayerSaveManager : MonoBehaviour
@@ -79,10 +78,6 @@ namespace Game.Scripts.Core.Managers
             _playerData.itemInventory = serializableDict;
         }
         
-        private void SaveItemInInventory(Inventory inventory)
-        {
-            _playerData.tempItemList = inventory.TempItemList;
-        }
 
         public void Save()
         {
@@ -90,9 +85,6 @@ namespace Game.Scripts.Core.Managers
             
             // Real Usage
             SaveItemInInventory(_inventory.InventoryItems);
-            
-            // For learning Only
-            SaveItemInInventory(_inventory);
             
             var json = JsonUtility.ToJson(_playerData);
             File.WriteAllText(_filePath, json);

@@ -5,7 +5,6 @@ using UnityEngine.PlayerLoop;
 namespace Game.Scripts.Items
 {
     // Abstract Class
-    [Serializable]
     public abstract class Item : MonoBehaviour
     {
         public string _name;

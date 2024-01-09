@@ -42,9 +42,11 @@ namespace Game.Scripts.Core.Managers
             {
                 var json = File.ReadAllText(_filePath);
                 var data = JsonUtility.FromJson<PlayerDataJson>(json);
+                print(data.lastPosition);
                 return data.itemInventory.ToDictionary();
             }
 
+            Save();
             return new Dictionary<string, InventoryItem>();
         }
 

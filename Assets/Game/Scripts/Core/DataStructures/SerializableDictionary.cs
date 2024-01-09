@@ -11,6 +11,7 @@ namespace Game.Scripts.Core.DataStructures
 
         public SerializableDictionary(Dictionary<TKey, TValue> dictionary)
         {
+            
             keys = new List<TKey>(dictionary.Keys);
             values = new List<TValue>(dictionary.Values);
         }
@@ -18,6 +19,8 @@ namespace Game.Scripts.Core.DataStructures
         public Dictionary<TKey, TValue> ToDictionary()
         {
             var dictionary = new Dictionary<TKey, TValue>();
+
+            if (keys.Count <= 0) return dictionary;
 
             if (keys.Count != values.Count)
             {
@@ -30,6 +33,11 @@ namespace Game.Scripts.Core.DataStructures
             }
 
             return dictionary;
+        }
+
+        public int Count()
+        {
+            return keys.Count;
         }
     }
 }

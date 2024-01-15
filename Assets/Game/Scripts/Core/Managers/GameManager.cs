@@ -10,6 +10,10 @@ namespace Game.Scripts.Core.Managers
         private static GameManager _instance;
         private int _curDay;
         [SerializeField] private float _secondsPerDay = 5.0f;
+        
+        // Pools Setting
+        [SerializeField] private GameObject _itemPool;
+        
 
         public event UnityAction OnDayChanged;
 
@@ -23,6 +27,12 @@ namespace Game.Scripts.Core.Managers
         {
             get => _curDay;
             set => _curDay = value;
+        }
+
+        public GameObject ItemPool
+        {
+            get => _itemPool;
+            set => _itemPool = value;
         }
 
         private void Awake()

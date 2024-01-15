@@ -9,5 +9,7 @@ namespace Game.Scripts.Items
         public List<Sprite> ProgressSprites;
         public Sprite ReadyToHarvestSprites;
         public int DaysGrowth;
+        public GameObject ProductPrefab;
+        public int LifeTime;
     }
 }

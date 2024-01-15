@@ -18,3 +18,5 @@ MonoBehaviour:
   - {fileID: 972182031, guid: 0cdef7cfa5e2f48088a31e49e604feb8, type: 3}
   ReadyToHarvestSprites: {fileID: -239480495, guid: 0cdef7cfa5e2f48088a31e49e604feb8, type: 3}
   DaysGrowth: 3
+  ProductPrefab: {fileID: 8221689264457405950, guid: 696f03222ea24415794f093c4d269269, type: 3}
+  LifeTime: 15

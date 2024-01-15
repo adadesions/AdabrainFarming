@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Game.Scripts.Core.Managers;
 using UnityEngine;
 using UnityEngine.Events;
+using Object = UnityEngine.Object;
 
 namespace Game.Scripts.Items
 {
@@ -71,6 +72,17 @@ namespace Game.Scripts.Items
                 _sr.sprite = _cropData.ReadyToHarvestSprites;
                 _isReadyToHarvest = true;
             }
+            
+            SelfDestroy();
+        }
+
+        private void SelfDestroy()
+        {
+            if (_cropProgress >= _cropData.LifeTime)
+            {
+                OnHarvest?.Invoke();
+                Destroy(gameObject);
+            }
         }
 
         private int CropProgress()
@@ -99,6 +111,13 @@ namespace Game.Scripts.Items
         private void Harvest()
         {
             OnHarvest?.Invoke();
+            
+            // Instantiate a product
+            var product = Instantiate(_cropData.ProductPrefab, transform.position, Quaternion.identity);
+            var productLifeTime = product.GetComponent<CollectableItem>().Description.liftTime;
+            product.transform.SetParent(_gameManager.ItemPool.transform);
+            
+            Destroy(product, productLifeTime);
             Destroy(gameObject);
         }
         

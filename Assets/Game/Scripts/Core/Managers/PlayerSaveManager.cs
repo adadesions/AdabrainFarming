@@ -94,7 +94,7 @@ namespace Game.Scripts.Core.Managers
 
         private void OnApplicationQuit()
         {
-            Save();
+            // Save();
         }
     }
 }

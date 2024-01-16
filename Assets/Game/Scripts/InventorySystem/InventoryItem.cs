@@ -1,11 +1,12 @@
 using System;
+using System.Runtime.Serialization;
 using Game.Scripts.Items;
 using UnityEngine;
 
 namespace Game.Scripts.InventorySystem
 {
     [Serializable]
-    public class InventoryItem
+    public class InventoryItem : ISerializable
     {
         public CollectableItem _item;
         public int _quantity;
@@ -27,6 +28,11 @@ namespace Game.Scripts.InventorySystem
         {
             get => _quantity;
             set => _quantity = value;
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("_quantity", _quantity);
         }
     }
 }

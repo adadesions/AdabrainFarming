@@ -68,14 +68,12 @@ namespace Game.Scripts.CropSystem
         {
             _isEntered = true;
             _highlight.SetActive(true);
-            print("Enter");
         }
 
         private void OnMouseExit()
         {
             _isEntered = false;
             _highlight.SetActive(false);
-            print("Exit");
         }
     }
 }

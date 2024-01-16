@@ -9,11 +9,12 @@ namespace Game.Scripts.Core.Managers
     {
         private static GameManager _instance;
         private int _curDay;
+        private GameObject _player;
+        private Animator _playerAnimator;
         [SerializeField] private float _secondsPerDay = 5.0f;
         
         // Pools Setting
         [SerializeField] private GameObject _itemPool;
-        
 
         public event UnityAction OnDayChanged;
 
@@ -49,6 +50,9 @@ namespace Game.Scripts.Core.Managers
         // Start is called before the first frame update
         void Start()
         {
+            _player = GameObject.FindWithTag("Player");
+            _playerAnimator = _player.GetComponent<Animator>();
+            
             print($"Current Day: {_curDay} days");
             StartCoroutine(UpdateDay());
         }
@@ -64,10 +68,14 @@ namespace Game.Scripts.Core.Managers
             }
         }
 
-        // Update is called once per frame
-        void Update()
+        public Animator GetPlayerAnimator()
         {
-        
+            return _playerAnimator;
+        }
+
+        public Vector2 GetPlayerPosition()
+        {
+            return (Vector2) _player.transform.position;
         }
     }
 }

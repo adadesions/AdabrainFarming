@@ -19,6 +19,9 @@ namespace Game.Scripts.Items
         public UnityAction OnHarvest;
         private bool _isReadyToHarvest;
         private Camera _camera;
+        [SerializeField] private int _watering;
+        private int _realProgress;
+        private Animator _playerAnimator;
 
         private void OnEnable()
         {
@@ -38,6 +41,7 @@ namespace Game.Scripts.Items
             _sr = GetComponent<SpriteRenderer>();
             _sr.sprite = _cropData.ProgressSprites[_cropProgress];
             _plantDays = _gameManager.CurrentDay;
+            _playerAnimator = _gameManager.GetPlayerAnimator();
             // StartCoroutine(GrowingUp());
         }
 
@@ -63,17 +67,24 @@ namespace Game.Scripts.Items
         private void ChangeCropSprite()
         {
             _cropProgress = CropProgress();
-            if (_cropProgress < _cropData.DaysGrowth)
-            {
-                _sr.sprite = _cropData.ProgressSprites[_cropProgress];
-            }
-            else
+            SelfDestroy();
+            
+            // Final Sprite
+            if (_realProgress >= _cropData.DaysGrowth - 1)
             {
                 _sr.sprite = _cropData.ReadyToHarvestSprites;
                 _isReadyToHarvest = true;
+                return;
             }
             
-            SelfDestroy();
+            // Progress Sprites
+            if (_cropProgress < _cropData.DaysGrowth && _watering >= 1)
+            {
+                _realProgress++;
+                _sr.sprite = _cropData.ProgressSprites[_realProgress];
+                _watering = 0;
+                return;
+            }
         }
 
         private void SelfDestroy()
@@ -103,9 +114,34 @@ namespace Game.Scripts.Items
                     if (_isReadyToHarvest)
                     {
                         Harvest();
-                    }    
+                    }
+                    else
+                    {
+                        Watering();
+                    }
                 }
             }
+        }
+
+        private void Watering()
+        {
+            _watering++;
+            
+            // Play Player Watering Animation
+            // _playerAnimator.SetTrigger("WaterTrigger");
+            var mousePos = (Vector2) _camera.ScreenToWorldPoint(Input.mousePosition); 
+            var playerPos = _gameManager.GetPlayerPosition();
+            var direction = (mousePos - playerPos).normalized;
+            
+            if (direction.x > 0)
+            {
+                _playerAnimator.Play("Cat@Watering_Right");    
+            }
+            else
+            {
+                _playerAnimator.Play("Cat@Watering_Left");
+            }
+            
         }
 
         private void Harvest()

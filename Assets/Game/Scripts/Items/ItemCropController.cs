@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Game.Scripts.Core.Managers;
+using Game.Scripts.Models;
+using Game.Scripts.Views;
 using UnityEngine;
 using UnityEngine.Events;
 using Object = UnityEngine.Object;
@@ -22,17 +24,34 @@ namespace Game.Scripts.Items
         [SerializeField] private int _watering;
         private int _realProgress;
         private Animator _playerAnimator;
+        private ItemCropModel _itemCropModel;
+        private ItemCropView _itemCropView;
+
+        private void Awake()
+        {
+            _itemCropModel = GetComponent<ItemCropModel>();
+            _itemCropView = GetComponent<ItemCropView>();
+        }
 
         private void OnEnable()
         {
             _gameManager = GameManager.Instance;
             _gameManager.OnDayChanged += ChangeCropSprite;
+            
+            // State Events
+            _itemCropModel.OnWateringChanged += OnWateringChanged;
+            _itemCropModel.OnStoppedGrowing += OnStoppedGrowing;
         }
 
         private void OnDisable()
         {
             _gameManager.OnDayChanged -= ChangeCropSprite;
+            
+            // State Events
+            _itemCropModel.OnWateringChanged -= OnWateringChanged;
+            _itemCropModel.OnStoppedGrowing -= OnStoppedGrowing;
         }
+
 
         // Start is called before the first frame update
         void Start()
@@ -42,27 +61,21 @@ namespace Game.Scripts.Items
             _sr.sprite = _cropData.ProgressSprites[_cropProgress];
             _plantDays = _gameManager.CurrentDay;
             _playerAnimator = _gameManager.GetPlayerAnimator();
+            
+
             // StartCoroutine(GrowingUp());
         }
 
-        // private IEnumerator GrowingUp()
-        // {
-        //     while (_cropProgress < _cropData.ProgressSprites.Count - 1)
-        //     {
-        //         yield return new WaitForSeconds(5);
-        //         _cropProgress++;
-        //         _sr.sprite = _cropData.ProgressSprites[_cropProgress];
-        //     }
-        //     yield return new WaitForSeconds(5);
-        //     print("Ready to Harvest");
-        //     _sr.sprite = _cropData.ReadyToHarvestSprites;
-        // }
-
-        // Update is called once per frame
-        // void Update()
-        // {
-        //     ChangeCropSprite();
-        // }
+        private void OnWateringChanged(int wateringValue)
+        {
+            var isShow = wateringValue < 1;
+            _itemCropView.ShowWateringIcon(isShow);
+        }
+        
+        private void OnStoppedGrowing()
+        {
+            _itemCropView.ShowStopGrowingIcon(true);
+        }
 
         private void ChangeCropSprite()
         {
@@ -78,11 +91,13 @@ namespace Game.Scripts.Items
             }
             
             // Progress Sprites
-            if (_cropProgress < _cropData.DaysGrowth && _watering >= 1)
+            _itemCropModel.IsGrowing = _cropProgress <= _cropData.DaysGrowth;
+            if (_itemCropModel.IsGrowing && _itemCropModel.Watering >= 1)
             {
                 _realProgress++;
+                _plantDays = _gameManager.CurrentDay;
                 _sr.sprite = _cropData.ProgressSprites[_realProgress];
-                _watering = 0;
+                _itemCropModel.Watering = 0;
                 return;
             }
         }
@@ -125,7 +140,7 @@ namespace Game.Scripts.Items
 
         private void Watering()
         {
-            _watering++;
+            _itemCropModel.Watering++;
             
             // Play Player Watering Animation
             // _playerAnimator.SetTrigger("WaterTrigger");

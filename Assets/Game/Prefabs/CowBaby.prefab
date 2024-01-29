@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8118453437221195283}
   - component: {fileID: 1196697541343925975}
   - component: {fileID: 7727654464288559464}
+  - component: {fileID: 1374925944391858957}
   m_Layer: 0
   m_Name: CowBaby
   m_TagString: Untagged
@@ -176,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de87dbad2b94640836daebeb1f6d00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animalCarePanel: {fileID: 2563285000699771095, guid: bec6d1c5682e74232b12e725e6b0271c, type: 3}
 --- !u!70 &7727654464288559464
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -211,3 +213,16 @@ CapsuleCollider2D:
   m_Offset: {x: -0.004297622, y: -0.058734797}
   m_Size: {x: 0.1698894, y: 0.09253356}
   m_Direction: 1
+--- !u!114 &1374925944391858957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4401076074860439876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d8353bd4bb420984c25911567fcd20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onMouseEnterCursor: {fileID: 2800000, guid: e9cbbd7f4b159c44ba7918ed31612df2, type: 3}

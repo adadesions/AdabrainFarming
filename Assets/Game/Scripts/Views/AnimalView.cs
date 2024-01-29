@@ -7,6 +7,7 @@ namespace Game.Scripts.Views
     public class AnimalView : MonoBehaviour
     {
         private Animator _anim;
+        [SerializeField] private GameObject _animalCarePanel;
 
         private void Start()
         {
@@ -21,6 +22,17 @@ namespace Game.Scripts.Views
         public void SetIsWalk(bool isWalk)
         {
             _anim.SetBool("IsWalk", isWalk);
+        }
+
+        private void OnMouseDown()
+        {
+            var isShowing = _animalCarePanel.activeSelf;
+            ShowAnimalCarePanel(!isShowing);
+        }
+
+        private void ShowAnimalCarePanel(bool isShow)
+        {
+            _animalCarePanel.SetActive(isShow);
         }
     }
 }

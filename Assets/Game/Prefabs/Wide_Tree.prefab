@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 5213022534742776362}
   - component: {fileID: 6782135921355342637}
   - component: {fileID: 7033889743465255207}
+  - component: {fileID: 782805843290873424}
   m_Layer: 0
   m_Name: Wide_Tree
   m_TagString: Untagged
@@ -240,6 +241,19 @@ MonoBehaviour:
   - {fileID: 4048920039369046450, guid: a56801ef2b21b4f739db9af59b73fb56, type: 3}
   - {fileID: 6896522442251667336, guid: 00e2571f28b9b4ca5aa0a07ca0d0e891, type: 3}
   _numDropItems: 2
+--- !u!114 &782805843290873424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6210919465549932269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d8353bd4bb420984c25911567fcd20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onMouseEnterCursor: {fileID: 2800000, guid: 0230513a91d07d949958e664ab2a6cb8, type: 3}
 --- !u!1 &8489537757742629920
 GameObject:
   m_ObjectHideFlags: 0

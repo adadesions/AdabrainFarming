@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 7658858282847558267}
   - component: {fileID: 5310245234100496220}
   - component: {fileID: 8643374983228661575}
+  - component: {fileID: 7403047196746037629}
+  - component: {fileID: 4126943503698260207}
   m_Layer: 0
   m_Name: GoatBaby
   m_TagString: Untagged
@@ -175,3 +177,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4230c38fbb804823b08e75eb6a09628e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7403047196746037629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6450414805759613598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d8353bd4bb420984c25911567fcd20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onMouseEnterCursor: {fileID: 2800000, guid: 9ee5febc9c797aa45a8619f4542d6eee, type: 3}
+--- !u!70 &4126943503698260207
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6450414805759613598}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.010667589, y: -0.036744237}
+  m_Size: {x: 0.11970055, y: 0.08177148}
+  m_Direction: 1

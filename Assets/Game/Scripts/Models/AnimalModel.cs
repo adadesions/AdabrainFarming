@@ -6,6 +6,7 @@ namespace Game.Scripts.Models
     public class AnimalModel : MonoBehaviour
     {
         private bool _isWalk;
+        [SerializeField] private string _animalName;
         [SerializeField] private float _speed = 1;
         [SerializeField] private float _walkCooldown = 2f;
         
@@ -34,6 +35,12 @@ namespace Game.Scripts.Models
         {
             get => _walkCooldown;
             set => _walkCooldown = value;
+        }
+
+        public string Name
+        {
+            get => _animalName;
+            set => _animalName = value;
         }
     }
 }

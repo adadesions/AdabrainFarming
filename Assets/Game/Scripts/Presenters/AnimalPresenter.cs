@@ -1,6 +1,7 @@
 using System;
 using Game.Scripts.Models;
 using Game.Scripts.Views;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -15,21 +16,31 @@ namespace Game.Scripts.Presenters
         private AnimalView _animalView;
         private Rigidbody2D _rb2d;
         private Vector2 _targetPos;
+        private TextMeshPro _nameFloatingUI;
 
         private void Start()
         {
             _animalModel = GetComponent<AnimalModel>();
             _animalView = GetComponent<AnimalView>();
             _rb2d = GetComponent<Rigidbody2D>();
+            _nameFloatingUI = GetComponentInChildren<TextMeshPro>();
+
+            _nameFloatingUI.text = _animalModel.Name;
             
             // State Events
             _animalModel.OnIsWalkChanged += OnIsWalkChanged;
+            
+            // UI Events
+            _animalView.OnMouseDownedAnimalView += OnMouseDownedAnimalView;
         }
 
         private void OnDestroy()
         {
             // State Events
             _animalModel.OnIsWalkChanged += OnIsWalkChanged;
+            
+            // UI Events
+            _animalView.OnMouseDownedAnimalView -= OnMouseDownedAnimalView;
         }
 
         private void FixedUpdate()
@@ -66,6 +77,11 @@ namespace Game.Scripts.Presenters
         private void OnIsWalkChanged(bool isWalk)
         {
             _animalView.SetIsWalk(isWalk);
+        }
+
+        private void OnMouseDownedAnimalView()
+        {
+            _animalView.AnimalNameUI = _animalModel.Name;
         }
     }
 }

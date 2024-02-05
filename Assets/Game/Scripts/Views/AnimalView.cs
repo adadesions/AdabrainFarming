@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.Scripts.Views
 {
@@ -7,7 +8,19 @@ namespace Game.Scripts.Views
     public class AnimalView : MonoBehaviour
     {
         private Animator _anim;
-        [SerializeField] private GameObject _animalCarePanel;
+        private string _animalNameUI;
+
+        // External UI Events
+        public static event UnityAction<string, Transform> OnMouseDownAnimalView;
+        
+        // Internal UI Events
+        public event UnityAction OnMouseDownedAnimalView;
+
+        public string AnimalNameUI
+        {
+            get => _animalNameUI;
+            set => _animalNameUI = value;
+        }
 
         private void Start()
         {
@@ -26,13 +39,8 @@ namespace Game.Scripts.Views
 
         private void OnMouseDown()
         {
-            var isShowing = _animalCarePanel.activeSelf;
-            ShowAnimalCarePanel(!isShowing);
-        }
-
-        private void ShowAnimalCarePanel(bool isShow)
-        {
-            _animalCarePanel.SetActive(isShow);
+            OnMouseDownedAnimalView?.Invoke();
+            OnMouseDownAnimalView?.Invoke(_animalNameUI, transform);
         }
     }
 }

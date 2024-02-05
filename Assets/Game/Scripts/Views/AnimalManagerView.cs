@@ -5,12 +5,14 @@ namespace Game.Scripts.Views
     public class AnimalManagerView : MonoBehaviour
     {
         [SerializeField] private Transform _animalZone;
+        [SerializeField] private Collider2D _animalZoneCollider;
 
         public void InstantiateAnimals(GameObject animalPrefab)
         {
+            var boundary = _animalZoneCollider.bounds;
             var randPos = new Vector3(
-                Random.Range(-8f, 8f), 
-                Random.Range(14f, 20f), 
+                Random.Range(boundary.min.x, boundary.max.x), 
+                Random.Range(boundary.min.y, boundary.max.y), 
                 0);
             var animalClone = Instantiate(
                 animalPrefab, randPos, Quaternion.identity);

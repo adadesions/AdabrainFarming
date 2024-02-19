@@ -35,8 +35,7 @@ namespace Game.Scripts.Items
 
         private void OnEnable()
         {
-            _gameManager = GameManager.Instance;
-            _gameManager.OnDayChanged += ChangeCropSprite;
+            GameManager.OnDayChanged += ChangeCropSprite;
             
             // State Events
             _itemCropModel.OnWateringChanged += OnWateringChanged;
@@ -45,7 +44,7 @@ namespace Game.Scripts.Items
 
         private void OnDisable()
         {
-            _gameManager.OnDayChanged -= ChangeCropSprite;
+            GameManager.OnDayChanged -= ChangeCropSprite;
             
             // State Events
             _itemCropModel.OnWateringChanged -= OnWateringChanged;
@@ -58,6 +57,7 @@ namespace Game.Scripts.Items
         {
             _camera = Camera.main;
             _sr = GetComponent<SpriteRenderer>();
+            _gameManager = GameManager.Instance;
             _sr.sprite = _cropData.ProgressSprites[_cropProgress];
             _plantDays = _gameManager.CurrentDay;
             _playerAnimator = _gameManager.GetPlayerAnimator();

@@ -62,12 +62,6 @@ namespace Game.Scripts.Trees
             _anim.SetTrigger("NextState");
             transform.rotation = Quaternion.Euler(Vector3.zero);
             
-            // Drop Item
-            // TODO: Drop item rate
-            // if (Random.value < _itemDropRate)
-            // {
-            //     _productItem.DropItem();    
-            // }
             _productItem.DropItem();
 
             // Instantiate new log sprite instead of setActive it

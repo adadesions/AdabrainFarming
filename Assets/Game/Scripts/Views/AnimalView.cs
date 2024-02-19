@@ -1,4 +1,5 @@
 using System;
+using Game.Scripts.Core.Managers;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,6 +10,9 @@ namespace Game.Scripts.Views
     {
         private Animator _anim;
         private string _animalNameUI;
+        
+        [SerializeField] private GameObject _productBubble;
+        private bool _isProductBubbleShowing;
 
         // External UI Events
         public static event UnityAction<string, Transform> OnMouseDownAnimalView;
@@ -40,7 +44,22 @@ namespace Game.Scripts.Views
         private void OnMouseDown()
         {
             OnMouseDownedAnimalView?.Invoke();
-            OnMouseDownAnimalView?.Invoke(_animalNameUI, transform);
+
+            if (!_isProductBubbleShowing)
+            {
+                OnMouseDownAnimalView?.Invoke(_animalNameUI, transform);
+            }
+        }
+
+        public void UpdateToMatureState(bool isMature)
+        {
+            _anim.SetBool("IsMature", isMature);
+        }
+
+        public void ShowProductBubble(bool isShow)
+        {
+            _isProductBubbleShowing = isShow;
+            _productBubble.SetActive(isShow);
         }
     }
 }

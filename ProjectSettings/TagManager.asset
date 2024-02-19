@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Animal
+    uniqueID: 3346877563
+    locked: 0
+  - name: AnimalIcon
+    uniqueID: 4083744441
+    locked: 0

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Game.Scripts.Presenters;
 using TMPro;
 using UnityEngine;
 
@@ -82,6 +83,10 @@ namespace Game.Scripts.Views
             
             _isFeedReady = false;
             StartCoroutine(ShowFoodInSeconds(food, 1f));
+            
+            // Activate Food Factor
+            var animalPresenter = _animalTransform.GetComponent<AnimalPresenter>();
+            animalPresenter.ActivateFoodFactor();
         }
 
         public void OnClickPetBtn()

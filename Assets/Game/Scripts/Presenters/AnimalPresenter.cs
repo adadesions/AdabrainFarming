@@ -1,8 +1,10 @@
 using System;
+using Game.Scripts.Core.Managers;
 using Game.Scripts.Models;
 using Game.Scripts.Views;
 using TMPro;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using Random = UnityEngine.Random;
 
 namespace Game.Scripts.Presenters
@@ -12,11 +14,28 @@ namespace Game.Scripts.Presenters
     [RequireComponent(typeof(Rigidbody2D))]
     public class AnimalPresenter : MonoBehaviour
     {
+        #region Fields
+
         private AnimalModel _animalModel;
         private AnimalView _animalView;
         private Rigidbody2D _rb2d;
         private Vector2 _targetPos;
         private TextMeshPro _nameFloatingUI;
+
+        #endregion
+
+        #region UnityAPIs
+
+        private void OnEnable()
+        {
+            GameManager.OnDayChanged += OnDayChanged;
+
+        }
+
+        private void OnDisable()
+        {
+            GameManager.OnDayChanged -= OnDayChanged;
+        }
 
         private void Start()
         {
@@ -29,6 +48,8 @@ namespace Game.Scripts.Presenters
             
             // State Events
             _animalModel.OnIsWalkChanged += OnIsWalkChanged;
+            _animalModel.OnIsMatureChanged += OnIsMatureChanged;
+            _animalModel.OnProductReadied += OnProductReadied;
             
             // UI Events
             _animalView.OnMouseDownedAnimalView += OnMouseDownedAnimalView;
@@ -37,7 +58,9 @@ namespace Game.Scripts.Presenters
         private void OnDestroy()
         {
             // State Events
-            _animalModel.OnIsWalkChanged += OnIsWalkChanged;
+            _animalModel.OnIsWalkChanged -= OnIsWalkChanged;
+            _animalModel.OnIsMatureChanged -= OnIsMatureChanged;
+            _animalModel.OnProductReadied -= OnProductReadied;
             
             // UI Events
             _animalView.OnMouseDownedAnimalView -= OnMouseDownedAnimalView;
@@ -60,6 +83,10 @@ namespace Game.Scripts.Presenters
             }
         }
 
+        #endregion
+
+        #region Methods
+
         private void AnimalStop()
         {
             _rb2d.velocity = Vector2.zero;
@@ -74,6 +101,27 @@ namespace Game.Scripts.Presenters
             _animalView.ChangeAnimationDirection(directionX);
         }
 
+        #endregion
+
+
+        #region Events
+        private void OnProductReadied()
+        {
+            _animalView.ShowProductBubble(true);
+        }
+
+        private void OnIsMatureChanged(bool isMature)
+        {
+            _animalView.UpdateToMatureState(isMature);
+        }
+
+        private void OnDayChanged()
+        {
+            _animalModel.UpdateGrowthPoint();
+            print($"Current Age: {_animalModel.Age}");
+            print($"Current GP: {_animalModel.GrowthPoint}");
+        }
+
         private void OnIsWalkChanged(bool isWalk)
         {
             _animalView.SetIsWalk(isWalk);
@@ -82,6 +130,16 @@ namespace Game.Scripts.Presenters
         private void OnMouseDownedAnimalView()
         {
             _animalView.AnimalNameUI = _animalModel.Name;
+            _animalModel.IsProductReady = false;
+            _animalView.ShowProductBubble(false);
+        }
+
+        #endregion
+        
+
+        public void ActivateFoodFactor()
+        {
+            _animalModel.ActivateFoodFactor();
         }
     }
 }

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 140a918543e54357adaa59c9fe10db49, type: 3}
+  m_Name: Cow
+  m_EditorClassIdentifier: 
+  AnimalName: Cow
+  StartingAge: 1
+  LifeSpan: 8
+  ProductionAgeRange: {x: 2, y: 6}
+  BaseProductionRate: 8
+  BaseGrowthRate: 20
+  FoodDataSheet: {fileID: 11400000, guid: e65f5b4adc4ff475988fee0fe64a8150, type: 2}
+  GrowthPoints:
+  - 0
+  - 200
+  - 200
+  - 300
+  - 300
+  - 200
+  - 150
+  - 150

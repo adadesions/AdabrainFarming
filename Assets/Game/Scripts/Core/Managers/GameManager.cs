@@ -7,16 +7,30 @@ namespace Game.Scripts.Core.Managers
 {
     public class GameManager : MonoBehaviour
     {
+        #region Fields
+
         private static GameManager _instance;
         private int _curDay;
         private GameObject _player;
         private Animator _playerAnimator;
+
+        #region SerializeFields
+
         [SerializeField] private float _secondsPerDay = 5.0f;
-        
         // Pools Setting
         [SerializeField] private GameObject _itemPool;
 
-        public event UnityAction OnDayChanged;
+        #endregion
+        
+        #endregion
+
+
+        #region Events Fields
+        public static event UnityAction OnDayChanged;
+
+        #endregion
+
+        #region Properties
 
         public static GameManager Instance
         {
@@ -35,6 +49,10 @@ namespace Game.Scripts.Core.Managers
             get => _itemPool;
             set => _itemPool = value;
         }
+
+        #endregion
+
+        #region UnityAPIs
 
         private void Awake()
         {
@@ -57,6 +75,10 @@ namespace Game.Scripts.Core.Managers
             StartCoroutine(UpdateDay());
         }
 
+        #endregion
+
+        #region Methods
+
         private IEnumerator UpdateDay()
         {
             while (true)
@@ -77,5 +99,7 @@ namespace Game.Scripts.Core.Managers
         {
             return (Vector2) _player.transform.position;
         }
+
+        #endregion
     }
 }

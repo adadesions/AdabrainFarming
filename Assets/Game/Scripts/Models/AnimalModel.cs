@@ -35,7 +35,8 @@ namespace Game.Scripts.Models
         #region State Events
         public event UnityAction OnProductReadied;
         public event UnityAction<bool> OnIsMatureChanged;
-        public event UnityAction<bool> OnIsWalkChanged; 
+        public event UnityAction<bool> OnIsWalkChanged;
+        public event UnityAction<string, int> OnGivenProduct; 
 
         #endregion
 
@@ -88,7 +89,7 @@ namespace Game.Scripts.Models
                         OnIsMatureChanged?.Invoke(_isMature);
 
                         // TODO: For Activate Production
-                        if (!_isProductionActivated)
+                        if (!_isProductionActivated )
                         {
                             ActivateProduction();
                         }
@@ -164,6 +165,21 @@ namespace Game.Scripts.Models
         public void ActivateFoodFactor()
         {
             _foodFactor = _animalDataSheet.FoodDataSheet.GrowthModifier;
+        }
+
+        public void ResetProductState()
+        {
+            _isProductReady = false;
+            _isProductionActivated = false;
+
+            GiveProduct();
+        }
+
+        private void GiveProduct()
+        {
+            var productName = _animalDataSheet.ProductName;
+            var productAmount = _animalDataSheet.ProductBaseAmount;
+            OnGivenProduct?.Invoke(productName, productAmount);
         }
     }
 }

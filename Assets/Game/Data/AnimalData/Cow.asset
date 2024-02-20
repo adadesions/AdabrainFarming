@@ -17,7 +17,7 @@ MonoBehaviour:
   LifeSpan: 8
   ProductionAgeRange: {x: 2, y: 6}
   BaseProductionRate: 8
-  BaseGrowthRate: 20
+  BaseGrowthRate: 100
   FoodDataSheet: {fileID: 11400000, guid: e65f5b4adc4ff475988fee0fe64a8150, type: 2}
   GrowthPoints:
   - 0
@@ -28,3 +28,5 @@ MonoBehaviour:
   - 200
   - 150
   - 150
+  ProductName: Milk
+  ProductBaseAmount: 1

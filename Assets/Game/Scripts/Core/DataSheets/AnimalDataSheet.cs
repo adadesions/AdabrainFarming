@@ -15,5 +15,7 @@ namespace Game.Scripts.Core.DataSheets
         public float BaseGrowthRate = 20f;
         public AnimalFoodDataSheet FoodDataSheet;
         public List<float> GrowthPoints;
+        public string ProductName;
+        public int ProductBaseAmount = 1;
     }
 }

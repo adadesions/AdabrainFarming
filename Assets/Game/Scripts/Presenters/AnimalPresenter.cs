@@ -21,6 +21,7 @@ namespace Game.Scripts.Presenters
         private Rigidbody2D _rb2d;
         private Vector2 _targetPos;
         private TextMeshPro _nameFloatingUI;
+        private float _lastTimeClickedProduct;
 
         #endregion
 
@@ -45,26 +46,43 @@ namespace Game.Scripts.Presenters
             _nameFloatingUI = GetComponentInChildren<TextMeshPro>();
 
             _nameFloatingUI.text = _animalModel.Name;
-            
-            // State Events
+
+            #region State Events
             _animalModel.OnIsWalkChanged += OnIsWalkChanged;
             _animalModel.OnIsMatureChanged += OnIsMatureChanged;
             _animalModel.OnProductReadied += OnProductReadied;
+            _animalModel.OnGivenProduct += OnGivenProduct;
+
+            #endregion
+
+            #region UI Events
             
-            // UI Events
             _animalView.OnMouseDownedAnimalView += OnMouseDownedAnimalView;
+            _animalView.OnClickedProductBubble += OnClickedProductBubble;
+
+            #endregion
+
         }
 
         private void OnDestroy()
         {
-            // State Events
+            #region State Events
+            
             _animalModel.OnIsWalkChanged -= OnIsWalkChanged;
             _animalModel.OnIsMatureChanged -= OnIsMatureChanged;
             _animalModel.OnProductReadied -= OnProductReadied;
+            _animalModel.OnGivenProduct -= OnGivenProduct;
             
-            // UI Events
+            #endregion
+
+            #region UI Events
+            
             _animalView.OnMouseDownedAnimalView -= OnMouseDownedAnimalView;
+            _animalView.OnClickedProductBubble -= OnClickedProductBubble;
+
+            #endregion
         }
+
 
         private void FixedUpdate()
         {
@@ -105,6 +123,21 @@ namespace Game.Scripts.Presenters
 
 
         #region Events
+
+        private void OnGivenProduct(string productName, int productAmount)
+        {
+            if (Time.time > _lastTimeClickedProduct + 3.0f)
+            {
+                _lastTimeClickedProduct = Time.time;
+                _animalView.ShowGainProduct(productName, productAmount);
+            }
+        }
+
+        private void OnClickedProductBubble()
+        {
+            _animalModel.ResetProductState();
+        }
+
         private void OnProductReadied()
         {
             _animalView.ShowProductBubble(true);

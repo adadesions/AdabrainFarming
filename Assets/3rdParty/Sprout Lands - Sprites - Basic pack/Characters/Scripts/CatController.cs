@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _3rdParty.Sprout_Lands___Sprites___Basic_pack.Characters.Scripts
@@ -12,7 +13,7 @@ namespace _3rdParty.Sprout_Lands___Sprites___Basic_pack.Characters.Scripts
         [SerializeField] private float _speed = 3.0f;
         private Animator _anim;
         private Vector2 _lastMove;
-
+        
         // Start is called before the first frame update
         void Start()
         {

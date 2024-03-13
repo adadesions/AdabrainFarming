@@ -47,3 +47,9 @@ TagManager:
   - name: AnimalIcon
     uniqueID: 4083744441
     locked: 0
+  - name: Building
+    uniqueID: 3412990845
+    locked: 0
+  - name: Player
+    uniqueID: 2942497367
+    locked: 0

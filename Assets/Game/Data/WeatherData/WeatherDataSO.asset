@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2619a67de242d4ebc8862612304d3640, type: 3}
+  m_Name: WeatherDataSO
+  m_EditorClassIdentifier: 
+  DaysSprites:
+  - {fileID: -1554378304, guid: f746c35b1eddf4a4d8eaedfce8aa9196, type: 3}
+  - {fileID: 380862296, guid: f746c35b1eddf4a4d8eaedfce8aa9196, type: 3}
+  - {fileID: 532470303, guid: f746c35b1eddf4a4d8eaedfce8aa9196, type: 3}
+  - {fileID: -1430057837, guid: f746c35b1eddf4a4d8eaedfce8aa9196, type: 3}
+  - {fileID: 1432891236, guid: f746c35b1eddf4a4d8eaedfce8aa9196, type: 3}
+  - {fileID: -2106229914, guid: f746c35b1eddf4a4d8eaedfce8aa9196, type: 3}
+  - {fileID: -993824785, guid: f746c35b1eddf4a4d8eaedfce8aa9196, type: 3}
+  CurrentDay: 3
+  aDayDurationInMins: 0.5

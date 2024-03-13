@@ -6,6 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/EP11-MyHomeScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Scenes/EP25-MyHomeScene.unity
+    guid: 3e3e74748b5674fdc99eb79443c4113d
+  - enabled: 1
+    path: Assets/Scenes/BuildingScenes/AdaHouse.unity
+    guid: 8d948581c248a478784e5193df628abd
+  - enabled: 1
+    path: Assets/Scenes/PersistantScene/PersistantData.unity
+    guid: b8d64483b543a4350a6fe0230209bdab
+  - enabled: 1
+    path: Assets/Scenes/EP26-MyHomeScene.unity
+    guid: d472ea3764233402696e4912419ff96a
+  - enabled: 1
+    path: Assets/Scenes/EP27-MyHomeScene.unity
+    guid: 2dcec2b158c2843b3829a4695bfd8c50
+  - enabled: 1
+    path: Assets/Scenes/BuildingScenes/North_AdaHouse.unity
+    guid: eedb3a3eb96d94f068894e9136e7796b
+  - enabled: 1
+    path: Assets/Scenes/BuildingScenes/SceneTrigger_AdaHouse.unity
+    guid: fec07a79b17e34807ac3c5012ba3424d
+  - enabled: 1
+    path: Assets/Scenes/BuildingScenes/West_AdaHouse.unity
+    guid: d1fc01bf3f5aa400fadcf871e37b095d
   m_configObjects: {}

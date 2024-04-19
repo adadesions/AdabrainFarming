@@ -8,11 +8,18 @@ namespace Game.Scripts.DataTypes.SO
     {
         public List<Sprite> DaysSprites;
         public int CurrentDay;
-        public float aDayDurationInMins;
+        public float CurrentTime;
+        public float aDayDurationInSeconds = 1f;
+        public float DayLengthInMinutes = 3.0f;
+        public float TimeOfDay;
+        public Color morningColor;
+        public Color noonColor;
+        public Color midnightColor;
 
         public Sprite GetCurrentDaySprite()
         {
-            return DaysSprites[CurrentDay % 7 - 1];
+            CurrentDay = CurrentDay <= 0 ? 1 : CurrentDay;
+            return DaysSprites[ (CurrentDay-1) % DaysSprites.Count ];
         }
     }
 }

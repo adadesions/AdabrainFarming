@@ -206,12 +206,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7355213621319724252, guid: 148968a775230475e987b8cff936f073, type: 3}
       propertyPath: _scenes.Array.data[0]
-      value: 
-      objectReference: {fileID: 102900000, guid: fec07a79b17e34807ac3c5012ba3424d, type: 3}
+      value: PersistantData
+      objectReference: {fileID: 0}
     - target: {fileID: 7355213621319724252, guid: 148968a775230475e987b8cff936f073, type: 3}
       propertyPath: _scenes.Array.data[1]
-      value: 
-      objectReference: {fileID: 102900000, guid: b8d64483b543a4350a6fe0230209bdab, type: 3}
+      value: North_AdaHouse
+      objectReference: {fileID: 0}
     - target: {fileID: 7858960106219235259, guid: 148968a775230475e987b8cff936f073, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

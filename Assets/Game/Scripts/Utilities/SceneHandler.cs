@@ -11,7 +11,7 @@ namespace Game.Scripts.Utilities
     {
         #region Fields
 
-        [SerializeField] private List<Object> _scenes;
+        [SerializeField] private List<string> _scenes;
         [SerializeField] private bool _isDebugging;
         [SerializeField] private Transform _spawnPosition;
 
@@ -35,7 +35,9 @@ namespace Game.Scripts.Utilities
         {
             foreach (var scene in _scenes)
             {
-                SceneManager.LoadSceneAsync(scene.name, LoadSceneMode.Additive);
+                var loadedScene = SceneManager.GetSceneByName(scene);
+                if (loadedScene.IsValid()) continue;
+                SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
             }
         }
 

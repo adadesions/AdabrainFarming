@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/BuildingScenes/AdaHouse.unity
     guid: 8d948581c248a478784e5193df628abd
   - enabled: 1
-    path: Assets/Scenes/PersistantScene/PersistantData.unity
-    guid: b8d64483b543a4350a6fe0230209bdab
-  - enabled: 1
     path: Assets/Scenes/EP26-MyHomeScene.unity
     guid: d472ea3764233402696e4912419ff96a
   - enabled: 1
@@ -29,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BuildingScenes/West_AdaHouse.unity
     guid: d1fc01bf3f5aa400fadcf871e37b095d
+  - enabled: 1
+    path: Assets/Scenes/EP31-MyHomeScene.unity
+    guid: b8fbaf81dd06d4ae7b4679042344a1ad
+  - enabled: 1
+    path: Assets/Scenes/PersistantScene/PersistantData.unity
+    guid: b8d64483b543a4350a6fe0230209bdab
   m_configObjects: {}

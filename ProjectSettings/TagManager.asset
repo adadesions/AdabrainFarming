@@ -50,6 +50,9 @@ TagManager:
   - name: Building
     uniqueID: 3412990845
     locked: 0
+  - name: NPC
+    uniqueID: 1995861331
+    locked: 0
   - name: Player
     uniqueID: 2942497367
     locked: 0

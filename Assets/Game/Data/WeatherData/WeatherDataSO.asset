@@ -20,5 +20,11 @@ MonoBehaviour:
   - {fileID: 1432891236, guid: f746c35b1eddf4a4d8eaedfce8aa9196, type: 3}
   - {fileID: -2106229914, guid: f746c35b1eddf4a4d8eaedfce8aa9196, type: 3}
   - {fileID: -993824785, guid: f746c35b1eddf4a4d8eaedfce8aa9196, type: 3}
-  CurrentDay: 3
-  aDayDurationInMins: 0.5
+  CurrentDay: 17
+  CurrentTime: 0
+  aDayDurationInSeconds: 3
+  DayLengthInMinutes: 1
+  TimeOfDay: 0.28097618
+  morningColor: {r: 1, g: 1, b: 1, a: 0}
+  noonColor: {r: 1, g: 0.6885246, b: 0, a: 0}
+  midnightColor: {r: 0.004396367, g: 0, b: 0.2264151, a: 0}

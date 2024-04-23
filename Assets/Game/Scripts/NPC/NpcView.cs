@@ -8,8 +8,10 @@ namespace Game.Scripts.NPC
     {
         public GameObject NpcCanvas;
         public TextMeshProUGUI DialogueText;
+        public GameObject DialoguePanel;
         
         public event UnityAction OnTalked;
+        public static event UnityAction OnClosedDialogue;
         
         public void Talk()
         {
@@ -24,7 +26,8 @@ namespace Game.Scripts.NPC
 
         public void CloseDialogue()
         {
-            NpcCanvas.SetActive(false);
+            DialoguePanel.SetActive(false);
+            OnClosedDialogue?.Invoke();
         }
         
         public void OnClickNextButton()
